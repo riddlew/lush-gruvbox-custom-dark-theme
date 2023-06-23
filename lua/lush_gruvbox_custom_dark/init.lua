@@ -735,6 +735,7 @@ local M = lush(function(injected_functions)
     DiagnosticHint              { GruvboxAqua },
     DiagnosticSignHint          { GruvboxAquaSign },
     DiagnosticUnderlineHint     { GruvboxAquaShaded },
+    DiagnosticUnnecessary       { GruvboxAquaShaded },
     DiagnosticFloatingError     { GruvboxRed },
     DiagnosticFloatingWarn      { GruvboxOrange },
     DiagnosticFloatingInfo      { GruvboxBlue },
