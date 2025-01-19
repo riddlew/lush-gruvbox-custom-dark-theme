@@ -116,6 +116,7 @@ local M = lush(function(injected_functions)
       neutral_purple = colors.neutral_purple,
       neutral_aqua = colors.neutral_aqua,
       gray = colors.gray,
+      black = "#000000",
     },
     light = {
       bg0 = colors.light0,
@@ -397,9 +398,6 @@ local M = lush(function(injected_functions)
     -- -- vim-sneak
     -- Sneak { Search },
     --
-    -- -- voldikss/vim-floaterm
-    -- FloatermBorder { bg = colors.bg, fg = colors.fg },
-    --
     -- -- nvim-telescope/telescope
     -- TelescopeTitle          { gui = "bold" },
     -- TelescopeSelection      { bg = colors.nontext, fg = colors.fg },
@@ -625,8 +623,10 @@ local M = lush(function(injected_functions)
     NormalNC               { Normal },
     CursorLine             { bg = theme.dark.bg00 },
     CursorColumn           { CursorLine },
-    TabLineFill            { fg = theme.dark.bg4, bg = theme.dark.bg00 },
-    TabLineSel             { fg = theme.dark.green, bg = theme.dark.bg00 },
+    TabLineTabBg           { bg = theme.dark.green, gui = "bold" },
+    TabLineTabFg           { fg = theme.dark.green, gui = "bold" },
+    TabLineFill            { fg = theme.dark.fg1, bg = theme.dark.bg00 },
+    TabLineSel             { fg = theme.dark.black, bg = theme.dark.green, gui = "bold" },
     TabLine                { TabLineFill },
     MatchParen             { bg = theme.dark.bg2, gui = "bold" },
     ColorColumn            { bg = theme.dark.bg00 },
@@ -636,16 +636,49 @@ local M = lush(function(injected_functions)
     SpecialKey             { GruvboxFg4 },
     Visual                 { bg = theme.dark.bg1 },
     VisualNOS              { Visual },
-    Search                 { fg = theme.dark.yellow, bg = theme.dark.bg0, gui = "reverse" },
-    IncSearch              { fg = theme.dark.orange, bg = theme.dark.bg0, gui = "reverse" },
+    Search                 { fg = theme.dark.yellow, bg = theme.dark.black, gui = "reverse" },
+    IncSearch              { fg = theme.dark.orange, bg = theme.dark.black, gui = "reverse" },
     CurSearch              { IncSearch },
-    QuickFixLine           { fg = theme.dark.bg0, bg = theme.dark.yellow, gui = "bold" },
+    QuickFixLine           { fg = theme.dark.black, bg = theme.dark.yellow, gui = "bold" },
     Underlined             { fg = theme.dark.blue, gui = "underline" },
     StatusLine             { fg = theme.dark.bg00, bg = theme.dark.fg1, gui = "reverse" },
     StatusLineNC           { fg = theme.dark.bg00, bg = theme.dark.fg4, gui = "reverse" },
-    WinBar                 { fg = theme.dark.fg4, bg = theme.dark.bg0 },
-    WinBarNC               { fg = theme.dark.fg3, bg = theme.dark.bg0 },
+    -- StatusLineNameError { bg = colors.columns, fg = colors.red },
+    -- StatusLineNameWarning { bg = colors.columns, fg = colors.yellow },
+    StatusLine2            { fg = theme.dark.fg0, bg = theme.dark.bg2 },
+    StatusLineModeNormal   { gui = "bold", fg = theme.dark.black, bg = theme.dark.green },
+    StatusLineModePending  { gui = "bold", fg = theme.dark.black, bg = theme.dark.orange },
+    StatusLineModeInsert   { gui = "bold", fg = theme.dark.black, bg = theme.dark.blue },
+    StatusLineModeVisual   { gui = "bold", fg = theme.dark.black, bg = theme.dark.purple },
+    StatusLineModeVLine    { gui = "bold", fg = theme.dark.black, bg = theme.dark.purple },
+    StatusLineModeVBlock   { gui = "bold", fg = theme.dark.black, bg = theme.dark.purple },
+    StatusLineModeSelect   { gui = "bold", fg = theme.dark.black, bg = theme.dark.purple },
+    StatusLineModeSLine    { gui = "bold", fg = theme.dark.black, bg = theme.dark.purple },
+    StatusLineModeSBlock   { gui = "bold", fg = theme.dark.black, bg = theme.dark.purple },
+    StatusLineModeReplace  { gui = "bold", fg = theme.dark.black, bg = theme.dark.red },
+    StatusLineModeVReplace { gui = "bold", fg = theme.dark.black, bg = theme.dark.red },
+    StatusLineModeCommand  { gui = "bold", fg = theme.dark.black, bg = theme.dark.yellow },
+    StatusLineModeEx       { gui = "bold", fg = theme.dark.black, bg = theme.dark.yellow },
+    StatusLineModeShell    { gui = "bold", fg = theme.dark.fg0, bg = theme.dark.bg00 },
+    StatusLineModeTerminal { gui = "bold", fg = theme.dark.fg0, bg = theme.dark.bg00 },
+    StatusLineGitAdd       { fg = theme.dark.green, bg = theme.dark.bg2 },
+    StatusLineGitChange    { fg = theme.dark.yellow, bg = theme.dark.bg2 },
+    StatusLineGitDelete    { fg = theme.dark.red, bg = theme.dark.bg2 },
+    StatusLineError        { fg = theme.dark.black, bg = theme.dark.red },
+    StatusLineWarn         { fg = theme.dark.black, bg = theme.dark.yellow },
+    StatusLineInfo         { fg = theme.dark.black, bg = theme.dark.blue },
+    StatusLineHint         { fg = theme.dark.bg00, bg = theme.dark.cyan },
+    WinBar                 { fg = theme.dark.fg0 },
+    WinBarNC               { fg = theme.dark.fg4 },
     WinSeparator           { fg = theme.dark.bg3, bg = theme.dark.bg0 },
+    WinBarError            { gui = "bold", fg = theme.dark.bg00, bg = theme.dark.red },
+    WinBarWarn             { gui = "bold", fg = theme.dark.bg00, bg = theme.dark.yellow },
+    WinBarInfo             { gui = "bold", fg = theme.dark.bg00, bg = theme.dark.blue },
+    WinBarHint             { gui = "bold", fg = theme.dark.bg00, bg = theme.dark.aqua },
+    -- WinBarError            { fg = theme.dark.red, bg = theme.dark.shaded_red },
+    -- WinBarWarn             { fg = theme.dark.yellow, bg = theme.dark.shaded_yellow },
+    -- WinBarInfo             { fg = theme.dark.blue, bg = theme.dark.shaded_blue },
+    -- WinBarHint             { fg = theme.dark.aqua, bg = theme.dark.shaded_aqua },
     WildMenu               { fg = theme.dark.blue, bg = theme.dark.bg1, gui = "bold" },
     Directory              { GruvboxBlueBold },
     Title                  { GruvboxGreenBold },
@@ -867,7 +900,7 @@ local M = lush(function(injected_functions)
     NvimTreeGitRenamed   { fg = theme.dark.neutral_purple },
     NvimTreeGitNew       { fg = theme.dark.neutral_yellow },
     NvimTreeGitDeleted   { fg = theme.dark.neutral_red },
-    NvimTreeWindowPicker { bg = theme.dark.faded_aqua },
+    NvimTreeWindowPicker { bg = "#4493c8", fg = "#000000" }, -- swap-split always linked to this color group
 
     -- termdebug
     debugPC         { bg = theme.dark.faded_blue },
@@ -1372,16 +1405,16 @@ local M = lush(function(injected_functions)
 
     -- mason
     MasonHighlight                   { GruvboxAqua },
-    MasonHighlightBlock              { fg = theme.dark.bg0, bg = theme.dark.blue },
-    MasonHighlightBlockBold          { fg = theme.dark.bg0, bg = theme.dark.blue, gui = "bold" },
+    MasonHighlightBlock              { fg = theme.dark.black, bg = theme.dark.blue },
+    MasonHighlightBlockBold          { fg = theme.dark.black, bg = theme.dark.blue, gui = "bold" },
     MasonHighlightSecondary          { fg = theme.dark.yellow },
-    MasonHighlightBlockSecondary     { fg = theme.dark.bg0, bg = theme.dark.yellow },
-    MasonHighlightBlockBoldSecondary { fg = theme.dark.bg0, bg = theme.dark.yellow, gui = "bold" },
+    MasonHighlightBlockSecondary     { fg = theme.dark.black, bg = theme.dark.yellow },
+    MasonHighlightBlockBoldSecondary { fg = theme.dark.black, bg = theme.dark.yellow, gui = "bold" },
     MasonHeader                      { MasonHighlightBlockBoldSecondary },
     MasonHeaderSecondary             { MasonHighlightBlockBold },
     MasonMuted                       { fg = theme.dark.fg4 },
-    MasonMutedBlock                  { fg = theme.dark.bg0, bg = theme.dark.fg4 },
-    MasonMutedBlockBold              { fg = theme.dark.bg0, bg = theme.dark.fg4, gui = "bold" },
+    MasonMutedBlock                  { fg = theme.dark.black, bg = theme.dark.fg4 },
+    MasonMutedBlockBold              { fg = theme.dark.black, bg = theme.dark.fg4, gui = "bold" },
 
     -- lsp-inlayhints.nvim
     LspInlayHint { Comment },
@@ -1431,6 +1464,29 @@ local M = lush(function(injected_functions)
 
     IndentBlanklineChar        { fg = theme.dark.bg1 },
     IndentBlanklineContextChar { fg = theme.dark.bg4, gui = "nocombine" },
+
+    -- -- voldikss/vim-floaterm
+    FloatermBorder { bg = theme.dark.bg0, fg = theme.dark.fg0 },
+
+    -- Neogit
+    -- NeogitNotificationInfo     { fg = "#80ff95" },
+    -- NeogitNotificationWarning  { fg = "#fff454" },
+    -- NeogitNotificationError    { fg = "#c44323" },
+    -- NeogitDiffAddHighlight     { bg = "#404040", fg="#859900" },
+    -- NeogitDiffDeleteHighlight  { bg = "#404040", fg="#dc322f" },
+    -- NeogitDiffContextHighlight { bg = "#333333", fg="#b2b2b2" },
+    -- NeogitDiffContext          { bg = "#262626", fg="#b2b2b2" },
+    -- NeogitHunkHeader           { bg = "#cccccc", fg="#404040" },
+    -- NeogitHunkHeaderHighlight  { bg = "#cccccc", fg="#4d4d4d" },
+
+    -- rainbow-delimiters.nvim
+    RainbowDelimiterRed { fg = theme.dark.red },
+    RainbowDelimiterYellow { fg = theme.dark.yellow },
+    RainbowDelimiterBlue { fg = theme.dark.blue },
+    RainbowDelimiterOrange { fg = theme.dark.orange },
+    RainbowDelimiterGreen { fg = theme.dark.green },
+    RainbowDelimiterViolet { fg = theme.dark.purple },
+    RainbowDelimiterCyan { fg = theme.dark.aqua },
   }
 
 
